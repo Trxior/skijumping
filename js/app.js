@@ -120,3 +120,5 @@ function resetAllJumps() {
 }
 
 showResults('ranking', null);
+
+start();

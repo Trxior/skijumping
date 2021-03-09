@@ -109,7 +109,8 @@ body {
 
 @media screen and (max-width: 992px) {
   body {
-    font: 14px 'Ubuntu'; }
+    font: 12px 'Ubuntu';
+    padding: 5px; }
   .results__tile {
     grid-template: 1fr / 32px 44px 1fr 6ch 6ch 7ch;
     grid-gap: 4.16667px; }

@@ -207,33 +207,33 @@ const jumpers = [
     new Jumper('Vojtech', 'Stursa', 'Czech', 2),
     new Jumper('Roman', 'Koudelka', 'Czech', 2),
     new Jumper('Tomas', 'Vancura', 'Czech', 1),
-    // Kazakhstan
-    new Jumper('Sergey', 'Tkachenko', 'Kazakhstan', 3),
-    new Jumper('Sabirzan', 'Muminov', 'Kazakhstan', 2),
-    new Jumper('Danil', 'Vasiliev', 'Kazakhstan', 1),
-    new Jumper('Nikita', 'Devyatkin', 'Kazakhstan', 1),
-    new Jumper('Nurshat', 'Tursunzhanov', 'Kazakhstan', 1),
     // USA
     new Jumper('Decker', 'Dean', 'USA', 2),
     new Jumper('Kevin', 'Bickner', 'USA', 2),
     new Jumper('Casey', 'Larson', 'USA', 1),
     new Jumper('Andrew', 'Urlaub', 'USA', 1),
     new Jumper('Erik', 'Belshaw', 'USA', 1),
-    // Canada
-    new Jumper('Mackenzie', 'Boyd-Clowes', 'Canada', 5),
-    new Jumper('Matthew', 'Soukup', 'Canada', 1),
+    // Kazakhstan
+    new Jumper('Sergey', 'Tkachenko', 'Kazakhstan', 3),
+    new Jumper('Sabirzan', 'Muminov', 'Kazakhstan', 2),
+    new Jumper('Danil', 'Vasiliev', 'Kazakhstan', 1),
+    new Jumper('Nikita', 'Devyatkin', 'Kazakhstan', 1),
+    new Jumper('Nurshat', 'Tursunzhanov', 'Kazakhstan', 1),
     // Italy
     new Jumper('Giovanni', 'Bresadola', 'Italy', 3),
     new Jumper('Daniel', 'Moroder', 'Italy', 1),
     new Jumper('Francesco', 'Cecon', 'Italy', 1),
     new Jumper('Davide', 'Bresadola', 'Italy', 1),
     new Jumper('Alex', 'Insam', 'Italy', 2),
+    // Bulgaria
+    new Jumper('Vladimir', 'Zografski', 'Bulgaria', 4),
+    // Canada
+    new Jumper('Mackenzie', 'Boyd-Clowes', 'Canada', 5),
+    new Jumper('Matthew', 'Soukup', 'Canada', 1),
     // Estonia
     new Jumper('Artti', 'Aigro', 'Estonia', 4),
     new Jumper('Kevin', 'Maltsev', 'Estonia', 1),
     new Jumper('Martti', 'Nomme', 'Estonia', 1),
-    // Bulgaria
-    new Jumper('Vladimir', 'Zografski', 'Bulgaria', 4),
     // France 
     new Jumper('Mathis', 'Contamine', 'France', 1),
     new Jumper('Jonathan', 'Learoyd', 'France', 1),

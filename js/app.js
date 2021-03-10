@@ -119,3 +119,9 @@ function resetAllJumps() {
 }
 
 showResults('ranking', null);
+
+const startBtn = document.getElementById('start');
+startBtn.addEventListener('click', function() {
+    startBtn.style.display = 'none';
+    start();
+})

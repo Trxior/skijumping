@@ -4,7 +4,7 @@ let startingList = [];
 let hill = 0;
 let competitionRound = 0;
 
-jumpers.sort((a, b) => a.skill < b.skill ? 1 : -1);
+jumpers.sort((a, b) => b.skill - a.skill);
 
 function setHill() {
     currentHill = hills[hill];
@@ -47,16 +47,16 @@ function jumping(jump, amount) {
 
             switch (jump) {
                 case 'qualifications':
-                    startingList.sort((a, b) => a.points < b.points ? 1 : -1);
+                    startingList.sort((a, b) =>b.points - a.points);
                     startingList.splice(50, startingList.length);
-                    startingList.sort((a, b) => a.general < b.general ? 1 : -1);
+                    startingList.sort((a, b) => b.general - a.general);
                     resetAllJumps();
                     setTimeout(() => {
                         competitions();
                     }, 10000);
                     break;
                 case 'firstJump':
-                    startingList.sort((a, b) => a.points < b.points ? 1 : -1);
+                    startingList.sort((a, b) =>b.points - a.points);
                     startingList.splice(30, startingList.length);
                     setTimeout(() => {
                         competitions();
@@ -71,7 +71,7 @@ function jumping(jump, amount) {
 
             clearInterval(inv);
         }
-    }, 100);
+    }, 200);
 }
 
 function competitions() {
@@ -120,5 +120,3 @@ function resetAllJumps() {
 }
 
 showResults('ranking', null);
-
-start();

@@ -69,11 +69,11 @@ function showResults(type, activeJumper) {
     results.innerHTML = '';
 
     if (type === 'competitions') {
-        jumpers.sort((a, b) => a.points < b.points ? 1 : -1);
+        jumpers.sort((a, b) => b.points - a.points);
     }
 
     if (type === 'ranking') {
-        jumpers.sort((a, b) => a.general < b.general ? 1 : -1);
+        jumpers.sort((a, b) => b.general - a.general);
     }
 
     for (let i = 0; i < jumpers.length; i++) {

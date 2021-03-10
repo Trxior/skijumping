@@ -58,13 +58,12 @@ body {
     padding: 12.5px;
     font-weight: 700; }
   .results__country {
-    margin: -12.5px 0;
     display: flex;
     justify-content: center;
     align-items: center; }
     .results__country-flag {
       width: 36px;
-      height: 26px;
+      height: 27px;
       object-fit: cover;
       box-shadow: 0 0 1px var(--blackShadow); }
   .results__name {
@@ -95,7 +94,7 @@ body {
     align-items: center; }
     .last-jump__country-flag {
       width: 72px;
-      height: 52px;
+      height: 54px;
       object-fit: cover;
       box-shadow: 0 0 1px var(--blackShadow); }
   .last-jump__result {
@@ -110,11 +109,15 @@ body {
 @media screen and (max-width: 992px) {
   body {
     font: 12px 'Ubuntu';
-    padding: 5px; }
+    padding: 0; }
   .results__tile {
-    grid-template: 1fr / 32px 44px 1fr 6ch 6ch 7ch;
-    grid-gap: 4.16667px; }
+    grid-template: 1fr / 44px 33px 1fr 8ch 8ch 8ch;
+    grid-gap: 6.25px; }
+  .results__country-flag {
+    width: 32px;
+    height: 24px; }
   .results__place {
+    height: 100%;
     padding: 12.5px 6.25px; }
   .results__name span {
     display: block; } }

@@ -32,7 +32,8 @@ body {
   .results__title {
     padding: 12.5px;
     background: var(--primary);
-    color: var(--white); }
+    color: var(--white);
+    border-bottom: solid 4px var(--primary); }
   .results__tile {
     display: grid;
     grid-template: 1fr / 44px 44px 1fr 10ch 10ch 10ch;
@@ -78,7 +79,8 @@ body {
   grid-template: 1fr / 1fr 1fr;
   grid-gap: 12.5px;
   background: var(--titleBg);
-  color: var(--white); }
+  color: var(--white);
+  display: none; }
   .last-jump__info {
     display: flex;
     align-items: center;
@@ -111,11 +113,11 @@ body {
     font: 12px 'Ubuntu';
     padding: 0; }
   .results__tile {
-    grid-template: 1fr / 44px 33px 1fr 8ch 8ch 8ch;
-    grid-gap: 6.25px; }
+    grid-template: 1fr / 33px 33px 1fr 8ch 8ch 8ch;
+    grid-gap: 4.16667px; }
   .results__country-flag {
-    width: 32px;
-    height: 24px; }
+    width: 28px;
+    height: 21px; }
   .results__place {
     height: 100%;
     padding: 12.5px 6.25px; }

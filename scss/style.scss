@@ -41,6 +41,7 @@ body {
         padding: $padding/2;
         background: var(--primary);
         color: var(--white);
+        border-bottom: solid 4px var(--primary);
     }
 
     &__tile {
@@ -105,6 +106,7 @@ body {
     grid-gap: $padding/2;
     background: var(--titleBg);
     color: var(--white);
+    display: none;
 
     &__info {
         display: flex;
@@ -155,13 +157,13 @@ body {
 
     .results {
         &__tile {
-            grid-template: 1fr / 44px 33px 1fr 8ch 8ch 8ch;
-            grid-gap: $padding/4;
+            grid-template: 1fr / 33px 33px 1fr 8ch 8ch 8ch;
+            grid-gap: $padding/6;
         }
 
         &__country-flag {
-            width: 32px;
-            height: 24px;
+            width: 28px;
+            height: 21px;
         }
 
         &__place {

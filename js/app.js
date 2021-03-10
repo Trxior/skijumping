@@ -8,7 +8,9 @@ jumpers.sort((a, b) => b.skill - a.skill);
 
 function setHill() {
     currentHill = hills[hill];
-    console.log(currentHill);
+    
+    const hillTitle = document.getElementById('hill');
+    hillTitle.textContent = `${currentHill.name} - ${currentHill.country} [K: ${currentHill.k}, HS: ${currentHill.hs}]`;
 }
 
 function getRandom(min, max) {
@@ -77,13 +79,10 @@ function jumping(jump, amount) {
 function competitions() {
     switch (competitionRound) {
         case 0:
-            
             for (i = 0; i < jumpers.length; i++) {
                 startingList[i] = jumpers[i];
             }
-            /*
-                        startingList.splice(70, startingList.length);
-            */
+            
             jumping('qualifications', startingList.length);
             break;
         case 1:

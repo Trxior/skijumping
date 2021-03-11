@@ -4,11 +4,11 @@ let startingList = [];
 let hill = 0;
 let competitionRound = 0;
 
-jumpers.sort((a, b) => b.skill - a.skill);
+showResults('ranking', null);
 
 function setHill() {
     currentHill = hills[hill];
-    
+
     const hillTitle = document.getElementById('hill');
     hillTitle.textContent = `${currentHill.name} - ${currentHill.country} [K: ${currentHill.k}, HS: ${currentHill.hs}]`;
 }
@@ -22,17 +22,19 @@ function getRandom(min, max) {
 function calc() {
     setHill();
     for (let i = 1; i <= 10; i++) {
-        let min = -5 / 9 * Math.pow((i - 10), 2) + currentHill.k * (.95 + .05 + .05 - (10 - i) / 400);
-        let max = -5 / 9 * Math.pow((i - 10), 2) + currentHill.hs * (1.025 + (0 + i) / 400);
+        let min = -4 / 9 * Math.pow((i - 10), 2) + currentHill.k * (.95 + .05 + .05 - (10 - i) / 400);
+        let max = -4 / 9 * Math.pow((i - 10), 2) + currentHill.hs * (1.025 + (0 + i) / 400);
 
         console.log(`${i} || ${min.toFixed(0)} - ${max.toFixed(0)}`);
     }
 }
 
-//wyłonienie zawodników z kwoty startowej - 50 - 70
-
 function start() {
     setHill();
+    startingList = [];
+
+    let country = countries.find(obj => obj.name === currentHill.country);
+    country.limit += 6;
 
     if (currentHill !== undefined) {
         competitions();
@@ -49,7 +51,7 @@ function jumping(jump, amount) {
 
             switch (jump) {
                 case 'qualifications':
-                    startingList.sort((a, b) =>b.points - a.points);
+                    startingList.sort((a, b) => b.points - a.points);
                     startingList.splice(50, startingList.length);
                     startingList.sort((a, b) => b.general - a.general);
                     resetAllJumps();
@@ -58,7 +60,7 @@ function jumping(jump, amount) {
                     }, 10000);
                     break;
                 case 'firstJump':
-                    startingList.sort((a, b) =>b.points - a.points);
+                    startingList.sort((a, b) => b.points - a.points);
                     startingList.splice(30, startingList.length);
                     setTimeout(() => {
                         competitions();
@@ -67,22 +69,27 @@ function jumping(jump, amount) {
                 case 'secondJump':
                     setTimeout(() => {
                         competitions();
-                    }, 10000);
+                    }, 30000);
                 default:
             }
 
             clearInterval(inv);
         }
-    }, 200);
+    }, 100);
 }
+
 
 function competitions() {
     switch (competitionRound) {
         case 0:
             for (i = 0; i < jumpers.length; i++) {
-                startingList[i] = jumpers[i];
+                let country = countries.find(obj => obj.name === jumpers[i].country);
+                if (country.limit > 0) {
+                    country.limit--;
+                    startingList.push(jumpers[i]);
+                }
             }
-            
+
             jumping('qualifications', startingList.length);
             break;
         case 1:
@@ -118,10 +125,8 @@ function resetAllJumps() {
     }
 }
 
-showResults('ranking', null);
-
 const startBtn = document.getElementById('start');
-startBtn.addEventListener('click', function() {
+startBtn.addEventListener('click', function () {
     startBtn.style.display = 'none';
     start();
 })

@@ -73,7 +73,13 @@ function showResults(type, activeJumper) {
     }
 
     if (type === 'ranking') {
-        jumpers.sort((a, b) => b.general - a.general);
+        jumpers.sort((a, b) => {
+            if (a.general === b.general) {
+                return b.getSkill() - a.getSkill();
+            }
+
+            return b.general - a.general;
+        });
     }
 
     for (let i = 0; i < jumpers.length; i++) {
@@ -93,7 +99,10 @@ function showResults(type, activeJumper) {
 
 function setGeneral() {
     for (let i = 0; i < 30; i++) {
+        let country = countries.find(obj => obj.name === jumpers[i].country);
+
         jumpers[i].general += pointsForPlace[i];
+        country.points += pointsForPlace[i];
     }
 
     for (let i = 0; i < jumpers.length; i++) {
@@ -108,5 +117,48 @@ function setGeneral() {
         jumpers[i].place = i + 1;
     }
 
+    for (let i = 0; i < countries.length; i++) {
+        countries[i].limit = 0;
+    }
+
     showResults('ranking', null);
+
+    for (let i = 0; i < jumpers.length; i++) {
+        let country = countries.find(obj => obj.name === jumpers[i].country);
+
+        (i < 55 && country.limit < 6) ? country.limit++: null;
+    }
+
+    for (let i = 0; i < countries.length; i++) {
+        let limit = countries[i].limit;
+        if (limit === 2 || limit === 3) {
+            countries[i].limit = 4;
+        } else if (limit === 1) {
+            countries[i].limit = 3;
+        } else if (limit === 0) {
+            countries[i].limit = 2;
+        }
+    }
+
+    for (let i = 0, x = 0; i < jumpers.length; i++) {
+        let country = countries.find(obj => obj.name === jumpers[i].country);
+
+        if (country.limit !== 7) {
+            country.limit++;
+            x++;
+        }
+
+        if (x === 3) {
+            break;
+        }
+    }
+
+    countries.sort((a, b) => {
+        if (a.limit === b.limit) {
+            return b.points - a.points;
+        }
+
+        return b.limit - a.limit;
+    });
+//    console.table(countries);
 };

@@ -22,8 +22,6 @@ class Jumper {
 
         this.points += this.calculatePoints(this[jump]);
 
-        showResults('competitions', this);
-
 //        updateLastJump(this);
     }
     
@@ -46,11 +44,11 @@ class Jumper {
         }
 
         if (minmax === 'min') {
-            return (-4 / 9 * Math.pow((skill - 10), 2) + currentHill.k * (.95 + bonus - (10 - skill) / 400)).toFixed(0);
+            return (-5 / 9 * Math.pow((skill - 10), 2) + currentHill.k * (.95 + bonus - (10 - skill) / 400)).toFixed(0);
         }
 
         if (minmax === 'max') {
-            return (-4 / 9 * Math.pow((skill - 10), 2) + currentHill.hs * (1.025 + (0 + skill) / 400)).toFixed(0);
+            return (-5 / 9 * Math.pow((skill - 10), 2) + currentHill.hs * (1.025 + (0 + skill) / 400)).toFixed(0);
         }
     }
 

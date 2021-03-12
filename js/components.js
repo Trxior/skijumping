@@ -65,15 +65,18 @@ function createResultsTile(index, obj, rank, active) {
     results.appendChild(resultTile);
 }
 
-function showResults(type, activeJumper) {
+function showResults(type, arr, index) {
+
+    let sortedArray = [...arr];
+
     results.innerHTML = '';
 
     if (type === 'competitions') {
-        jumpers.sort((a, b) => b.points - a.points);
+        sortedArray.sort((a, b) => b.points - a.points);
     }
 
     if (type === 'ranking') {
-        jumpers.sort((a, b) => {
+        sortedArray.sort((a, b) => {
             if (a.general === b.general) {
                 return b.getSkill() - a.getSkill();
             }
@@ -82,23 +85,26 @@ function showResults(type, activeJumper) {
         });
     }
 
-    for (let i = 0; i < jumpers.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
 
         let active = false;
-        if (activeJumper === jumpers[i]) {
+        if (arr[index] === sortedArray[i]) {
             active = true;
         }
 
         createResultsTile(
             i,
-            jumpers[i],
+            sortedArray[i],
             type,
             active);
     }
 }
 
 function setGeneral() {
+    jumpers.sort((a, b) => b.points - a.points);
+
     for (let i = 0; i < 30; i++) {
+        const pointsForPlace = [100, 80, 60, 50, 45, 40, 36, 32, 29, 26, 24, 22, 20, 18, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
         let country = countries.find(obj => obj.name === jumpers[i].country);
 
         jumpers[i].general += pointsForPlace[i];
@@ -120,8 +126,16 @@ function setGeneral() {
     for (let i = 0; i < countries.length; i++) {
         countries[i].limit = 0;
     }
+    
+    jumpers.sort((a, b) => {
+        if (a.general === b.general) {
+            return b.getSkill() - a.getSkill();
+        }
 
-    showResults('ranking', null);
+        return b.general - a.general;
+    });
+
+    showResults('ranking', jumpers, null);
 
     for (let i = 0; i < jumpers.length; i++) {
         let country = countries.find(obj => obj.name === jumpers[i].country);
@@ -160,5 +174,5 @@ function setGeneral() {
 
         return b.limit - a.limit;
     });
-//    console.table(countries);
+    console.table(countries);
 };

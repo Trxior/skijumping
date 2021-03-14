@@ -35,6 +35,7 @@ function createResultsTile(index, obj, rank, active) {
 
     const firstMetres = (obj.firstJump > 0) ? `${obj.firstJump} m` : `-`;
     const secondMetres = (obj.secondJump > 0) ? `${obj.secondJump} m` : `-`;
+    const generalPoints = (obj.general > 0) ? `${obj.general.toFixed(0)}` : `-`;
     let clasification;
 
     const resultTile = document.createElement('div');
@@ -51,7 +52,7 @@ function createResultsTile(index, obj, rank, active) {
         clasification = `
         <div class="results__points"></div>
         <div class="results__points"></div>
-        <div class="results__points text--bold">${obj.general}</div>`;
+        <div class="results__points text--bold">${generalPoints}</div>`;
     }
     resultTile.innerHTML = `
         <div class="results__place">${++index}</div>
@@ -102,14 +103,6 @@ function showResults(type, arr, index) {
 
 function setGeneral() {
     jumpers.sort((a, b) => b.points - a.points);
-
-    for (let i = 0; i < 30; i++) {
-        const pointsForPlace = [100, 80, 60, 50, 45, 40, 36, 32, 29, 26, 24, 22, 20, 18, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-        let country = countries.find(obj => obj.name === jumpers[i].country);
-
-        jumpers[i].general += pointsForPlace[i];
-        country.points += pointsForPlace[i];
-    }
 
     for (let i = 0; i < jumpers.length; i++) {
         if (i + 1 > jumpers[i].place && jumpers[i].form > 1) {

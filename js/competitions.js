@@ -13,26 +13,43 @@ class Competition {
 
             return b.general - a.general;
         });
-        
+
         for (let i = 0; i < jumpers.length; i++) {
             let country = countries.find(obj => obj.name === jumpers[i].country);
             if (country.limit > 0) {
-                country.limit--;
-                this.participants.push(jumpers[i]);
+                if (jumpers[i].division === 1 || country.name === this.hill.country || jumpers[i].general >= 1) {
+                    country.limit--;
+                    this.participants.push(jumpers[i]);
+                } else if (jumpers[i].division > 1) {
+                    if (country.points > 0 || getRandom(1, (4 + jumpers[i].skill)) > 4) {
+                        country.limit--;
+                        this.participants.push(jumpers[i]);
+                    } else if (this.participants.length < 56 && getRandom(1, (4 + jumpers[i].skill)) >= 3) {
+                        country.limit--;
+                        this.participants.push(jumpers[i]);
+                    } else if (this.participants.length < 62 && getRandom(1, (2 + country.limit + jumpers[i].skill)) >= 4) {
+                        country.limit--;
+                        this.participants.push(jumpers[i]);
+                        console.log(jumpers[i].lastName, country.limit);
+                    }
+                }
             }
         }
+
         this.jumping('qualifications', this.participants.length);
     }
 
     qualifications() {
         this.participants.sort((a, b) => b.points - a.points);
+        for (let i = 0; i < this.participants.length; i++) {
+            this.participants[i].general += (this.participants[i].points * 0.00001);
+        }
         this.participants.splice(50, this.participants.length);
         this.participants.sort((a, b) => b.general - a.general);
         this.resetAllJumps();
         setTimeout(() => {
             this.jumping('firstJump', 50);
         }, 10000);
-
     }
 
     firstRound() {
@@ -51,6 +68,7 @@ class Competition {
 
     final() {
         setTimeout(() => {
+            this.addPoints();
             setGeneral();
             this.resetAllJumps();
             this.division.currentCompetition++;
@@ -58,6 +76,17 @@ class Competition {
                 this.division.startCompetition();
             }, 15000);
         }, 5000);
+    }
+
+    addPoints() {
+        const pointsForPlace = [100, 80, 60, 50, 45, 40, 36, 32, 29, 26, 24, 22, 20, 18, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+
+        for (let i = 0; i < 30; i++) {
+            let country = countries.find(obj => obj.name === this.participants[i].country);
+
+            this.participants[i].general += pointsForPlace[i];
+            country.points += pointsForPlace[i];
+        }
     }
 
     resetAllJumps() {

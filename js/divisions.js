@@ -1,6 +1,7 @@
 class Division {
-    constructor(name, season) {
+    constructor(name, division) {
         this.name = name;
+        this.division = division;
         this.competitions = [];
         this.currentCompetition = 0;
     }
@@ -22,5 +23,5 @@ class Division {
 }
 
 const divisions = [
-    new Division('20/21')
+    new Division('20/21', 1)
 ];

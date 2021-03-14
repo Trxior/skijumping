@@ -7,7 +7,7 @@ function getRandom(min, max) {
 }
 
 function calc(k, hs) {
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 0; i <= 10; i++) {
         let min = -4 / 9 * Math.pow((i - 10), 2) + k * (.95 + .05 + .05 - (10 - i) / 400);
         let max = -4 / 9 * Math.pow((i - 10), 2) + hs * (1.025 + (0 + i) / 400);
 

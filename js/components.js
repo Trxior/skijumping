@@ -102,20 +102,6 @@ function showResults(type, arr, index) {
 }
 
 function setGeneral() {
-    jumpers.sort((a, b) => b.points - a.points);
-
-    for (let i = 0; i < jumpers.length; i++) {
-        if (i + 1 > jumpers[i].place && jumpers[i].form > 1) {
-            jumpers[i].form -= 1;
-        }
-
-        if (i + 1 <= jumpers[i].place && jumpers[i].form < 10) {
-            jumpers[i].form += 1;
-        }
-
-        jumpers[i].place = i + 1;
-    }
-
     for (let i = 0; i < countries.length; i++) {
         countries[i].limit = 0;
     }

@@ -4,14 +4,14 @@ class Jumper {
         this.lastName = lastName;
         this.country = country;
         this.skill = skill;
-        this.form = skill;
+        this.form = skill/2;
         this.active = false;
         this.qualifications = 0;
         this.firstJump = 0;
         this.secondJump = 0;
         this.points = 0;
         this.general = 0;
-        this.place = 30;
+        this.place = 50;
     }
     
     get division() {
@@ -36,7 +36,7 @@ class Jumper {
     }
     
     getSkill() {
-        return (this.skill + this.form) / 2;
+        return (this.skill + this.form) / 1.5;
     }
 
     getDistance(minmax, jumper) {
@@ -44,21 +44,21 @@ class Jumper {
         let skill = this.getSkill();
 
         if (this.country === currentHill.country) {
-            bonus = 0.05;
-
-            if (skill < 9) {
-                skill += 1;
-            } else if (skill >= 9) {
+            if (skill < 9.525) {
+                skill += (20 - skill) / 20;
+            } else {
                 skill = 10;
             }
+            
+            bonus = (15 - skill) / 100;
         }
 
         if (minmax === 'min') {
-            return (-5 / 9 * Math.pow((skill - 10), 2) + currentHill.k * (.95 + bonus - (10 - skill) / 400)).toFixed(0);
+            return (-4 / 9 * Math.pow((skill - 10), 2) + currentHill.k * (.975 + bonus - (10 - skill) / 400)).toFixed(0);
         }
 
         if (minmax === 'max') {
-            return (-5 / 9 * Math.pow((skill - 10), 2) + currentHill.hs * (1.025 + (0 + skill) / 400)).toFixed(0);
+            return (-4 / 9 * Math.pow((skill - 10), 2) + currentHill.hs * (1.025 + (0 + skill) / 400)).toFixed(0);
         }
     }
 

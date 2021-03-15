@@ -8,12 +8,14 @@ function getRandom(min, max) {
 
 function calc(k, hs) {
     for (let i = 0; i <= 10; i++) {
-        let min = -4 / 9 * Math.pow((i - 10), 2) + k * (.95 + .05 + .05 - (10 - i) / 400);
+        let min = -4 / 9 * Math.pow((i - 10), 2) + k * (.975 + 0 - (10 - i) / 400);
         let max = -4 / 9 * Math.pow((i - 10), 2) + hs * (1.025 + (0 + i) / 400);
 
         console.log(`${i} || ${min.toFixed(0)} - ${max.toFixed(0)}`);
     }
 }
+
+calc(120, 134);
 
 const startBtn = document.getElementById('start');
 startBtn.addEventListener('click', function () {
